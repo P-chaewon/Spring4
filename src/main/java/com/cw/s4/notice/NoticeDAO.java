@@ -21,5 +21,12 @@ public class NoticeDAO {
 		return sqlSession.selectOne(NAMESPACE+"getSelect", noticeDTO);
 	}
 	
+	public int setInsert(NoticeDTO noticeDTO) {
+		return sqlSession.insert(NAMESPACE+"setInsert", noticeDTO);
+	}
+	
+	public int setDelete(Long num) {
+		return sqlSession.insert(NAMESPACE+"setDelete", num);
+	}
 
 }

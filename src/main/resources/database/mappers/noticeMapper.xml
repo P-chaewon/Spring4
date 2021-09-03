@@ -11,5 +11,13 @@
   	<select id="getSelect" parameterType="com.cw.s4.notice.NoticeDTO" resultType="com.cw.s4.notice.NoticeDTO">
   		SELECT * FROM NOTICE WHERE NUM=#{num}
   	</select>
+  	
+  	<insert id="setInsert" parameterType="com.cw.s4.notice.NoticeDTO">
+  		INSERT INTO NOTICE (NUM, TITLE, CONTENTS, WRITER) 
+  		VALUES(NOTICE_SEQ.NEXTVAL, #{title}, #{contents}, #{writer})
+  	</insert>
 	
+	<delete id="setDelete" parameterType="java.lang.Long">
+		DELETE NOTICE WHERE NUM=#{num}
+	</delete>
   </mapper>

@@ -20,11 +20,26 @@ public class NoticeTest extends MyJunitTest {
 		assertNotEquals(0, ar.size());
 	}
 	
-	@Test
+	/* @Test */
 	public void selectTest() {
 		NoticeDTO noticeDTO = new NoticeDTO();
 		noticeDTO.setNum(1);
 		assertNotNull(noticeDAO.getSelect(noticeDTO));
 	}
+	
+	/* @Test */
+	public void insertTest() {
+		NoticeDTO noticeDTO = new NoticeDTO();
+		noticeDTO.setTitle("title4");
+		noticeDTO.setContents("contents4");
+		noticeDTO.setWriter("writer4");
+		int result = noticeDAO.setInsert(noticeDTO);
+		assertNotEquals(0, result);
+	}
 
+	@Test
+	public void deleteTest() {
+		int result = noticeDAO.setDelete(41L);
+		assertNotEquals(0, result);
+	}
 }

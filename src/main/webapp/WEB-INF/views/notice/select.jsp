@@ -16,5 +16,6 @@
 <h1>${dto.regDate }</h1>
 <h3>${dto.contents}</h3>
 
+<a href="./delete?num=${dto.num}" class="btn btn-danger">Delete</a>
 </body>
 </html>

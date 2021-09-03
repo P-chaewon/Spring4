@@ -27,6 +27,7 @@
 			</tr>
 			</c:forEach>
 		</table>
+			<a href="./insert" class="btn btn-primary">Write</a>
 	</div>
 </div>
 </body>
