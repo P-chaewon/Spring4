@@ -22,7 +22,9 @@
 		/notice/select?num=?
 		/WEB-INF/views/board/select.jsp
 	3) 글쓰기
-		/notice/
+		/notice/insert
+		/WEB-INF/views/board/insert.jsp
+		/notice/insert POST
 	4) 삭제
 	5) 수정
 	
