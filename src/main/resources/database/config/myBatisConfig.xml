@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+  <configuration>
+  	<!-- 패키지 별칭 -->
+  	<typeAliases>
+  		<typeAlias type="com.cw.s4.board.BoardDTO" alias="BoardDTO"/>
+  		<typeAlias type="com.cw.s4.board.notice.NoticeDTO" alias="NoticeDTO"/>
+  		<typeAlias type="com.cw.s4.board.qna.QnaDTO" alias="QnaDTO"/>
+  		<typeAlias type="java.lang.Long" alias="Long"/>
+  		<typeAlias type="com.cw.s4.util.Pager" alias="Pager"/>
+  	</typeAliases>
+  </configuration>
