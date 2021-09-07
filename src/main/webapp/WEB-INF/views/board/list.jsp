@@ -11,14 +11,15 @@
 <body>
 <c:import url="../temp/boot_nav.jsp"></c:import>
 	<h1>${board} List Page</h1>
-	<div>
+<div class="container-fluid">
+	<div class="col-md-7 my-2 mx-auto">
 	<!-- search form start -->
 	<form action="./list" method="get">
 		<div class="input-group mb-3" >
 		  <select name="kind" class="form-select form-select-sm" aria-label=".form-select-sm example">
-			  <option value="title" >TITLE</option>
-			  <option value="contents">CONTENTS</option>
-			  <option value="writer">WRITER</option>
+			  <option value="k1" >TITLE</option>
+			  <option value="k2">CONTENTS</option>
+			  <option value="k3">WRITER</option>
 			</select>
 		  
 			<input type="text" name="search" class="form-control" aria-label="Text input with dropdown button">
@@ -26,7 +27,7 @@
 		</div>
 	</form>
 	<!-- search form finish -->
-		<table>
+		<table class="table table-hover">
 			<tr>
 				<th>Num</th><th>Title</th><th>Writer</th><th>REGDate</th><th>Hits</th>
 			</tr>
@@ -69,7 +70,7 @@
 		</nav>
 
 			<a href="./insert" class="btn btn-primary">Write</a>
-
+	</div>
 </div>
 </body>
 </html>

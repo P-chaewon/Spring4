@@ -8,8 +8,8 @@
   		SELECT * FROM (SELECT ROWNUM R, NT.* FROM 
         (SELECT * FROM NOTICE WHERE
         <choose>
-        	<when test="kind == 'title'">title</when>
-        	<when test="kind == 'contents'">contents</when>
+        	<when test="kind == 'k1'">title</when>
+        	<when test="kind == 'k2'">contents</when>
         	<otherwise>writer</otherwise>        
         </choose> 
         LIKE '%' || #{search} || '%' ORDER BY NUM DESC) NT)  
@@ -30,13 +30,11 @@
 	</delete>
 	
 	<select id="getCount" resultType="Long" parameterType="Pager">
-		SELECT COUNT(NUM) FROM NOTICE WHERE 
-		<choose>
-        	<when test="kind == 'title'">title</when>
-        	<when test="kind == 'contents'">contents</when>
-        	<otherwise>writer</otherwise>        
-        </choose> 
-        LIKE '%' || #{search} || '%'
+		SELECT COUNT(NUM) FROM NOTICE  
+		<if test="kind =='k1'">WHERE title LIKE '%' || #{search} || '%'</if>
+		<if test="kind == 'k2'">WHERE contents LIKE '%' || #{search} || '%'</if>
+		<if test="kind =='k3'">WHERE writer LIKE '%' || #{search} || '%'</if>
+
 	</select>
 	
   </mapper>
