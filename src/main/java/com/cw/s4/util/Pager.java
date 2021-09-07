@@ -43,6 +43,10 @@ public class Pager {
 		this.startNum = 5*(curBlock-1)+1;
 		this.lastNum = curBlock*5;
 		
+		if(totalBlock == curBlock) {
+			this.lastNum = this.totalPage;
+		}
+		
 	}
 
 	public Long getPn() {
