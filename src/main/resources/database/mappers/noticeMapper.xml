@@ -34,7 +34,9 @@
 		<if test="kind =='k1'">WHERE title LIKE '%' || #{search} || '%'</if>
 		<if test="kind == 'k2'">WHERE contents LIKE '%' || #{search} || '%'</if>
 		<if test="kind =='k3'">WHERE writer LIKE '%' || #{search} || '%'</if>
-
 	</select>
 	
+	<update id="setHitsUpdate" parameterType="BoardDTO">
+		UPDATE	NOTICE SET HITS=HITS+1 WHERE NUM=#{num}
+	</update>
   </mapper>

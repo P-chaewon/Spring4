@@ -18,9 +18,13 @@ public interface BoardDAO {
 	//삭제
 	public int setDelete(BoardDTO boardDTO) throws Exception;
 	
+	//조회수 업데이트
+	public int setHitsUpdate(BoardDTO boardDTO) throws Exception;
+	
 	//수정
 	public int setUpdate(BoardDTO boardDTO) throws Exception;
 	
 	//전체 갯수
 	public Long getCount(Pager pager) throws Exception;
+	
 }
