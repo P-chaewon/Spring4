@@ -2,9 +2,14 @@
  * 
  */
  
-let fn1 = function(){
-	alert("add");
-} 
+let title = document.getElementById("title");
 
-let bn3 = document.getElementById("bn3");
-bn3.addEventListener("click", fn1);
+let writer = document.getElementById("writer");
+
+
+const bn1 = document.getElementById("bn1");
+bn1.addEventListener("click", function(){
+	alert("add");
+	alert(title.getAttribute("title"));
+	alert(writer.getAttribute("writer"));
+});

@@ -29,7 +29,7 @@
 		 	
 		  <button id="bn1" type="button" class="btn btn-primary">ADD</button>
 		</form>
-<script type="text/javascript" src="../resources/js/boardCheck.js"></script>
 </div>
+<script type="text/javascript" src="../resources/js/boardCheck.js"></script>
 </body>
 </html>
