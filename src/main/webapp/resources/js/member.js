@@ -6,9 +6,19 @@
  const check = document.getElementsByClassName('check');
  const all = document.getElementById('all');
  const btn = document.getElementById('btn');
+ const ad = document.getElementById('ad');
+ const policy1 = document.getElementById('policy1');
+ const policy2 = document.getElementById('policy2');
+ const policy3 = document.getElementById('policy3');
+ 
+ 
+
+ 
  
  btn.addEventListener('click', function(){
 	if(all.checked){
+		location.href="./join"
+	} else if(!ad.checked && policy1.checked && policy2.checked && policy3.checked){
 		location.href="./join"
 	} else {
 		alert('필수 약관 동의');
