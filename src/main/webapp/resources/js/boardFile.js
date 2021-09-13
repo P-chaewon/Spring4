@@ -5,7 +5,7 @@
  
   let file = '<div class="input-group mb-3">';
  file = file + '<input type="file" class="form-control">';
- file = file + '<button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>';
+ file = file + '<button class="btn btn-outline-secondary del" type="button">X</button>';
  file = file + '</div>';
  
  
@@ -21,3 +21,6 @@ $("#fileAdd").click(function(){
 				
 })
 
+$(".del").click(function(){
+	alert('test');
+})

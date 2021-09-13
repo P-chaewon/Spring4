@@ -28,7 +28,7 @@
 		  </div>
 		 <!-- button 추가 -->
 		    <button type="button" class="btn btn-primary" id="fileAdd">File Add</button>
-
+			<button type="button" class="del">Delete</button>
 			<div id="fileAddResult">
 			
 			</div>
