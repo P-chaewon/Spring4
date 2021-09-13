@@ -10,12 +10,36 @@
  const policy1 = document.getElementById('policy1');
  const policy2 = document.getElementById('policy2');
  const policy3 = document.getElementById('policy3');
- 
- 
+ const ch = document.getElementsByClassName('ch');
 
  
+
+btn.addEventListener('click', function(){
+	let result = true;
+	for(let c of ch){
+		if(!c.checked){
+			result=false;
+			break;
+		}
+	}
+	
+	if(result){
+		location.href="./join";
+	} else {
+		alert('필수 약관 동의');
+	}
+})
+
+/*btn.addEventListener('click', function(){
+	if(all.checked){
+		location.href="./join";
+	} else {
+		alert('필수 약관 동의');
+	}
+})*/
  
- btn.addEventListener('click', function(){
+ 
+/* btn.addEventListener('click', function(){
 	if(all.checked){
 		location.href="./join"
 	} else if(!ad.checked && policy1.checked && policy2.checked && policy3.checked){
@@ -23,7 +47,7 @@
 	} else {
 		alert('필수 약관 동의');
 	}
-})
+})*/
  
 all.addEventListener('click', function(){
 	for(let ch of check){

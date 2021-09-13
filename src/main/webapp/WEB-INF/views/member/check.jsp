@@ -20,19 +20,19 @@
 			</label>
 		</div>	
 		<div class="form-check" >
-			<input class="form-check-input check" type="checkbox" value="" id="policy1">
+			<input class="form-check-input check ch" type="checkbox" value="" id="policy1">
 			<label class="form-check-label" for="policy1">
 				약관 1
 			</label>
 		</div>
 		<div class="form-check">
-			<input class="form-check-input check" type="checkbox" value="" id="policy2">
+			<input class="form-check-input check ch" type="checkbox" value="" id="policy2">
 			<label class="form-check-label policy" for="policy2">
 				약관 2
 			</label>
 		</div>
 		<div class="form-check">
-			<input class="form-check-input check" type="checkbox" value="" id="policy3">
+			<input class="form-check-input check ch" type="checkbox" value="" id="policy3">
 			<label class="form-check-label policy" for="policy3">
 				약관 3
 			</label>

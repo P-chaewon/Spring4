@@ -76,8 +76,11 @@
 				</li>
 			</ul>
 		</nav>
-
-			<a href="./insert" class="btn btn-primary">Write</a>
+		<c:if test="${not empty member }">
+			<a href="./insert" class="btn btn-primary">Write</a>		
+		</c:if>
+		
+		
 	</div>
 </div>
 </body>

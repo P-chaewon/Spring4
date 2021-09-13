@@ -11,5 +11,6 @@
   		<typeAlias type="com.cw.s4.board.qna.QnaDTO" alias="QnaDTO"/>
   		<typeAlias type="java.lang.Long" alias="Long"/>
   		<typeAlias type="com.cw.s4.util.Pager" alias="Pager"/>
+  		<typeAlias type="com.cw.s4.member.MemberDTO" alias="MemberDTO"/>
   	</typeAliases>
   </configuration>
