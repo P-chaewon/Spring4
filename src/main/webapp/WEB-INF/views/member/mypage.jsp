@@ -19,7 +19,8 @@
 	<a href="#" class="btn btn-danger" id="del">회원탈퇴</a>
 	
 	<script type="text/javascript">
-		const del = document.getElementById("del");
+		/* const del = document.getElementById("del"); */
+		const del = document.querySelector("#del");
 		del.addEventListener('click', function(){
 			let result = confirm('탈퇴하시겠습니까?');
 			if(result){

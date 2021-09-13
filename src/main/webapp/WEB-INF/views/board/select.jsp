@@ -18,9 +18,12 @@
 		<h3>DATE : ${dto.regDate}</h3>
 		<h3>HITS : ${dto.hits}</h3>
 	</div>
+	
 	<div class="mb3 ml-0">
+		<c:if test="${not empty member and dto.writer eq member.id}">
 			<a class="btn btn-danger" href="./delete?num=${dto.num}">Delete</a>	
 			<a class="btn btn-success" href="./update?num=${dto.num}">Update</a>
+		</c:if>
 			<c:if test="${board ne 'notice'}">
 				<a class="btn btn-light" href="./reply?num=${dto.num}">REPLY</a>
 			</c:if>
