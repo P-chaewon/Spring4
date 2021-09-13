@@ -26,10 +26,16 @@
 		   <label for="exampleFormControlTextarea1" class="form-label">Contents</label>
   			<textarea class="form-control" cols=""  name="contents" id="exampleFormControlTextarea1" rows="6"></textarea>
 		  </div>
-		 	
+		 <!-- button 추가 -->
+		    <button type="button" class="btn btn-primary" id="fileAdd">File Add</button>
+
+			<div id="fileAddResult">
+			
+			</div>
 		  <button type="submit" class="btn btn-primary">ADD</button>
 		</form>
 
 </div>
+<script type="text/javascript" src="../resources/js/boardFile.js"></script>
 </body>
 </html>

@@ -3,91 +3,30 @@
  */
  
 
- const check = document.getElementsByClassName('check');
- const all = document.getElementById('all');
- const btn = document.getElementById('btn');
- const ad = document.getElementById('ad');
- const policy1 = document.getElementById('policy1');
- const policy2 = document.getElementById('policy2');
- const policy3 = document.getElementById('policy3');
- const ch = document.getElementsByClassName('ch');
-
+ 
+ 
+ $("#all").click(function(){
+ 	$(".check").prop("checked", $(this).prop("checked"));		
+ });
  
 
-btn.addEventListener('click', function(){
+$(".check").click(function(){
 	let result = true;
-	for(let c of ch){
-		if(!c.checked){
+	$(".check").each(function(v1, v2){
+		if(!$(v2).prop("checked")){
 			result=false;
-			break;
+			console.log(v1, $(v2).prop("checked"));
+		//	break; each문 내에서 사용 불가
 		}
-	}
-	
-	if(result){
-		location.href="./join";
+	});
+	$("#all").prop("checked", result);
+});
+
+$("#btn").click(function(){
+	if($("#all").prop("checked")){
+		location.href="join";
 	} else {
-		alert('필수 약관 동의');
+		alert('약관동의하세요');
 	}
-})
+});
 
-/*btn.addEventListener('click', function(){
-	if(all.checked){
-		location.href="./join";
-	} else {
-		alert('필수 약관 동의');
-	}
-})*/
- 
- 
-/* btn.addEventListener('click', function(){
-	if(all.checked){
-		location.href="./join"
-	} else if(!ad.checked && policy1.checked && policy2.checked && policy3.checked){
-		location.href="./join"
-	} else {
-		alert('필수 약관 동의');
-	}
-})*/
- 
-all.addEventListener('click', function(){
-	for(let ch of check){
-		ch.checked=all.checked;
-	}
-})
-
-for(let ch of check){
-	ch.addEventListener('click', function(){
-		let result = true;
-		for(let c of check){
-			if(!c.checked){
-				result = false;
-				break;
-			}
-		}
-		all.checked=result;
-	})
-}
-
-
-
-
-/* for(ch of check){
-	ch.addEventListener('click', function(){
-		c1.checked=true;
-	})
-}*/
-
-/*all.addEventListener('click', function(){
-	if(all.checked){
-		for(c of c1){
-			c.checked=true;
-		}
-	}
-})
-*/
-/*
-for(c of c1){
-	c.addEventListener('click', function(){
-		alert(c.checked);
-	})
-}*/

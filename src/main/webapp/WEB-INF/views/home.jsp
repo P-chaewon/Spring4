@@ -21,5 +21,13 @@
 	<c:if test="${empty member}">
 		<h3>Login을 하기 전 보이는 문장</h3>
 	</c:if>		
+	
+	<button id="btn">CLICK</button>
+	<script type="text/javascript">
+		$("#btn").click(function() {
+			alert('alert');
+		});
+		
+	</script>
 </body>
 </html>
