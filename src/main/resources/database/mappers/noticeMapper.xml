@@ -21,10 +21,13 @@
   	</select>
   	
   	<insert id="setInsert" parameterType="BoardDTO">
+  		<selectKey order="BEFORE" resultType="Long" keyProperty="num">
+			SELECT NOTICE_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
   		INSERT INTO NOTICE (NUM, TITLE, CONTENTS, WRITER) 
-  		VALUES(NOTICE_SEQ.NEXTVAL, #{title}, #{contents}, #{writer})
+  		VALUES(#{num}, #{title}, #{contents}, #{writer})
   	</insert>
-	
+  		
 	<delete id="setDelete" parameterType="BoardDTO">
 		DELETE NOTICE WHERE NUM=#{num}
 	</delete>
@@ -39,4 +42,13 @@
 	<update id="setHitsUpdate" parameterType="BoardDTO">
 		UPDATE	NOTICE SET HITS=HITS+1 WHERE NUM=#{num}
 	</update>
+	
+	<insert id="setFile" parameterType="BoardFilesDTO">
+		INSERT INTO NOTICEFILES (FILENUM, NUM, FILENAME, ORINAME) 
+		VALUES(FILES_SEQ.NEXTVAL, #{num}, #{fileName}, #{oriName})
+	</insert>
+	
+	<select id="getFiles" parameterType="BoardDTO" resultType="BoardFilesDTO">
+		SELECT * FROM NOTICEFILES WHERE NUM=#{num}
+	</select>
   </mapper>

@@ -11,12 +11,16 @@
 <body>
 	<c:import url="../temp/boot_nav.jsp"></c:import>
 	<h1>My Page</h1>
-	<h1>${member.id}</h1>
-	<h1>${member.name }</h1>
-	<h1>${member.email }</h1>
-	<h1>${member.phone }</h1>
+	<h1>ID : ${member.id}</h1>
+	<h1>NAME : ${member.name }</h1>
+	<h1>EMAIL : ${member.email }</h1>
+	<h1>PHONE : ${member.phone }</h1>
+	<div>
+		<img alt="" src="../resources/upload/member/${files.fileName}">
+	</div>
 	<a href="./update?id=${member.id}" class="btn btn-primary">정보수정</a>
 	<a href="#" class="btn btn-danger" id="del">회원탈퇴</a>
+	
 	
 	<script type="text/javascript">
 		/* const del = document.getElementById("del"); */

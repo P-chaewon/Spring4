@@ -14,7 +14,7 @@
 <c:import url="../temp/boot_nav.jsp"></c:import>
 	<h1>Join Page</h1>
 	<div class="container-fluid">
-		<form id="frm" class="col-md-3 mx-auto" action="join" method="post" >
+		<form id="frm" class="col-md-3 mx-auto" action="join" method="post" enctype="multipart/form-data">
 			<div class="mb-3">
 			    <label for="title" class="form-label">ID</label>
 			    <input type="text" class="form-control put" name="id" id="id" placeholder="Enter ID">
@@ -42,23 +42,20 @@
 			    <label for="title" class="form-label">Email</label>
 			    <input type="email" class="form-control put" name="email" id="email" placeholder="abcd1234@naver.com">
 			</div>
-			<div class="mb-3" id="files">
-			    <label for="title" class="form-label"></label>
-			    <button type="button" class="btn btn-primary" id="add">File Add</button>
+			<div class="mb-3" id="f">
+			    <label for="photo" class="form-label">Photo</label>
+			    <input type="file" class="form-control put" name="photo" id="photo">
 			</div>
 			<!-- input file 추가 영역 -->
 			<div id="addResult">
 			
 			</div>
 			
-			<button type="button" class="btn btn-primary" id="btn">Join</button>
+			<button type="submit" class="btn btn-primary" id="btn">Join</button>
 		</form>	
-			<div class="mb-3" id="f">
-			    <label for="photo" class="form-label">Photo</label>
-			    <input type="file" class="form-control put" name="photo" id="photo">
-			</div>
+
 	</div>
-	<script type="text/javascript" src="../resources/js/join.js"></script>
-	<script type="text/javascript" src="../resources/js/file.js"></script>
+<!-- 	<script type="text/javascript" src="../resources/js/join.js"></script>
+	<script type="text/javascript" src="../resources/js/file.js"></script> -->
 </body>
 </html>

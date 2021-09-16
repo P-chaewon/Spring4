@@ -2,6 +2,8 @@ package com.cw.s4.board;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import com.cw.s4.util.Pager;
 
 public interface BoardService {
@@ -13,12 +15,14 @@ public interface BoardService {
 	public abstract BoardDTO getSelect(BoardDTO boardDTO) throws Exception;
 	
 	//추가
-	public int setInsert(BoardDTO boardDTO) throws Exception;
+	public int setInsert(BoardDTO boardDTO, MultipartFile [] files) throws Exception;
 	
 	//삭제
 	public int setDelete(BoardDTO boardDTO) throws Exception;
 	
 	//수정
 	public int setUpdate(BoardDTO boardDTO) throws Exception;
+	
+	
 
 }

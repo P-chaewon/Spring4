@@ -1,12 +1,18 @@
 package com.cw.s4.board.qna;
 
+import java.io.File;
 import java.util.List;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.cw.s4.board.BoardDTO;
+import com.cw.s4.board.BoardFilesDTO;
 import com.cw.s4.board.BoardService;
+import com.cw.s4.util.FileManager;
 import com.cw.s4.util.Pager;
 
 @Service
@@ -14,6 +20,10 @@ public class QnaService implements BoardService {
 	
 	@Autowired
 	private QnaDAO qnaDAO;
+	@Autowired
+	private ServletContext servletContext;
+	@Autowired
+	private FileManager fileManager;
 	
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {
@@ -31,15 +41,37 @@ public class QnaService implements BoardService {
 	}
 
 	@Override
-	public int setInsert(BoardDTO boardDTO) throws Exception {
+	public int setInsert(BoardDTO boardDTO, MultipartFile[] files) throws Exception {
+		//1. 파일 저장 폴더
+		String realPath = this.servletContext.getRealPath("/resources/upload/qna/");
+		System.out.println(realPath);
+		File file = new File(realPath);
+		int result = qnaDAO.setInsert(boardDTO);
+		for(MultipartFile multipartFile : files) {
+			String fileName = fileManager.fileSave(multipartFile, file);
+			BoardFilesDTO boardFilesDTO = new BoardFilesDTO();
+			boardFilesDTO.setFileName(fileName);
+			boardFilesDTO.setOriName(multipartFile.getOriginalFilename());
+			boardFilesDTO.setNum(boardDTO.getNum());
+			
+			result = qnaDAO.setFile(boardFilesDTO);
+			
+		}
 		// TODO Auto-generated method stub
-		return qnaDAO.setInsert(boardDTO);
+		return result;
 	}
 
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
+		String realPath = servletContext.getRealPath("/resources/upload/qna");
+		List<BoardFilesDTO> ar = qnaDAO.getFiles(boardDTO);
+		for(BoardFilesDTO boardFilesDTO : ar) {
+			File file = new File(realPath, boardFilesDTO.getFileName());
+			file.delete();
+		}
+		
 		// TODO Auto-generated method stub
-		return 0;
+		return qnaDAO.setDelete(boardDTO);
 	}
 
 	@Override
@@ -61,6 +93,10 @@ public class QnaService implements BoardService {
 		//3. insert
 		result = qnaDAO.setReply(qnaDTO);
 		return result;
+	}
+	
+	public List<BoardFilesDTO> getFiles(BoardDTO boardDTO) throws Exception {
+		return qnaDAO.getFiles(boardDTO);
 	}
 
 }

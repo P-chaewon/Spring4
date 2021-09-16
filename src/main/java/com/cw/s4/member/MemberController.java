@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -33,13 +34,13 @@ public class MemberController {
 	}
 	
 	@PostMapping("join")
-	public ModelAndView join(MemberDTO memberDTO) throws Exception {
+	public ModelAndView join(MemberDTO memberDTO, MultipartFile photo, HttpSession session) throws Exception {
+		
 		ModelAndView mv = new ModelAndView();
-		int result = memberService.setJoin(memberDTO);
+		int result = memberService.setJoin(memberDTO, photo, session);
 		String message ="회원가입 실패";
 		if(result>0) {
 			message = "회원가입 성공";
-			
 		}
 		mv.addObject("msg", message);
 		mv.addObject("url", "../");
@@ -94,8 +95,11 @@ public class MemberController {
 	}
 	
 	@GetMapping("mypage")
-	public ModelAndView mypage() throws Exception {
+	public ModelAndView mypage(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		MemberFilesDTO memberFilesDTO = memberService.getFile(memberDTO);
+		mv.addObject("files", memberFilesDTO);
 		mv.setViewName("member/mypage");
 		return mv;
 	}
