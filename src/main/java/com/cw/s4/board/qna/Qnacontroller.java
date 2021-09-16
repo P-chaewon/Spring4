@@ -59,7 +59,7 @@ public class Qnacontroller {
 		boardDTO = qnaService.getSelect(boardDTO);
 		List<BoardFilesDTO> ar = qnaService.getFiles(boardDTO);
 		mv.addObject("dto", boardDTO);
-		mv.addObject("files", ar);
+	//	mv.addObject("files", ar);
 		mv.setViewName("board/select");
 		return mv;
 	}

@@ -17,7 +17,7 @@
 		<h3>Writer : ${dto.writer}</h3>
 		<h3>DATE : ${dto.regDate}</h3>
 		<h3>HITS : ${dto.hits}</h3>
-		<c:forEach items="${files}" var="files">
+		<c:forEach items="${dto.files}" var="files">
 			<div>
 				<img alt="" src="../resources/upload/${board}/${files.fileName}">
 			</div>		

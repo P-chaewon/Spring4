@@ -1,12 +1,17 @@
 package com.cw.s4.board.qna;
 
+import java.util.List;
+
 import com.cw.s4.board.BoardDTO;
+import com.cw.s4.board.BoardFilesDTO;
 
 public class QnaDTO extends BoardDTO{
 	
 	private Long ref;
 	private Long step;
 	private Long depth;
+	
+	private List<BoardFilesDTO> files;
 	
 	public Long getRef() {
 		return ref;
@@ -26,6 +31,13 @@ public class QnaDTO extends BoardDTO{
 	public void setDepth(Long depth) {
 		this.depth = depth;
 	}
-
+	public List<BoardFilesDTO> getFiles() {
+		return files;
+	}
+	public void setFiles(List<BoardFilesDTO> files) {
+		this.files = files;
+	}
+	
+	
 	
 }

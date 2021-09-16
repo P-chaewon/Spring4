@@ -16,7 +16,7 @@
 	<h1>EMAIL : ${member.email }</h1>
 	<h1>PHONE : ${member.phone }</h1>
 	<div>
-		<img alt="" src="../resources/upload/member/${files.fileName}">
+		<img alt="" src="../resources/upload/member/${member.memberFilesDTO.fileName}">
 	</div>
 	<a href="./update?id=${member.id}" class="btn btn-primary">정보수정</a>
 	<a href="#" class="btn btn-danger" id="del">회원탈퇴</a>
