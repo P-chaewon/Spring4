@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.cw.s4.board.BoardDTO;
 import com.cw.s4.board.BoardFilesDTO;
+import com.cw.s4.board.CommentsDTO;
 import com.cw.s4.util.Pager;
 
 @Controller
@@ -27,6 +28,37 @@ public class NoticeController {
 		return "notice";
 	}
 	
+	@PostMapping("comment")
+	public ModelAndView setComment(CommentsDTO commentsDTO) throws Exception {
+		commentsDTO.setBoard("N");
+		int result = noticeService.setComment(commentsDTO);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("common/ajaxResult");
+		mv.addObject("result", result);
+		
+		return mv;
+		
+	}
+	
+	@GetMapping("getCommentList")
+	public ModelAndView getCommentList(CommentsDTO commentsDTO, Pager pager) throws Exception {
+		commentsDTO.setBoard("N");
+		List<CommentsDTO> ar = noticeService.getCommentList(commentsDTO, pager);
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("comments", ar);
+		mv.addObject("pager", pager);
+		mv.setViewName("common/ajaxList");
+		return mv;
+	}
+	
+	@GetMapping("commentDel")
+	public ModelAndView setCommentDelete(CommentsDTO commentsDTO) throws Exception {
+		int result = noticeService.setCommentDelete(commentsDTO);
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("common/ajaxList");
+		return mv;
+	}
+		
 //	@RequestMapping(value="list", method = RequestMethod.GET)
 	@GetMapping("list")
 	public ModelAndView getList(ModelAndView mv, Pager pager) throws Exception {
@@ -58,11 +90,14 @@ public class NoticeController {
 		return mv;
 	}
 	
+	
 	@GetMapping("select")
-	public ModelAndView getSelect(BoardDTO boardDTO) throws Exception {
+	public ModelAndView getSelect(BoardDTO boardDTO, CommentsDTO commentsDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		boardDTO = noticeService.getSelect(boardDTO);
 		List<BoardFilesDTO> ar = noticeService.getFiles(boardDTO);
+//		List<CommentsDTO> comments = noticeService.getCommentList(commentsDTO);
+//		mv.addObject("comments", comments);
 		mv.addObject("dto", boardDTO);
 //		mv.addObject("files", ar);
 		mv.setViewName("board/select");

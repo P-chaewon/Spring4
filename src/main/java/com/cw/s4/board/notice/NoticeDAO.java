@@ -1,6 +1,8 @@
 package com.cw.s4.board.notice;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import com.cw.s4.board.BoardDAO;
 import com.cw.s4.board.BoardDTO;
 import com.cw.s4.board.BoardFilesDTO;
+import com.cw.s4.board.CommentsDTO;
 import com.cw.s4.util.Pager;
 
 import oracle.net.aso.b;
@@ -72,7 +75,21 @@ public class NoticeDAO implements BoardDAO {
 		return sqlSession.selectList(NAMESPACE+"getFiles", boardDTO);
 	}
 	
+	public int setComment(CommentsDTO commentsDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setComment", commentsDTO);
+	}
 	
+	public List<CommentsDTO> getCommentList(Map<String, Object> map) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getCommentList", map);
+	}
+	
+	public Long getCommentCount(CommentsDTO commentsDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getCommentCount", commentsDTO);
+	}
+	
+	public int setCommentDelete(CommentsDTO commentsDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setCommentDelete", commentsDTO);
+	}
 	
 }
 

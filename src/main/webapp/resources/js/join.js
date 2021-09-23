@@ -3,6 +3,24 @@
  */
  
 //id, pw, name, email, phone 비어있으면 안됨
+
+
+$("#id").blur(function () {
+	let id = $('#id').val();
+
+	$.get('./idCheckAjax?id='+id, function(data){
+		data = data.trim();
+		console.log(data);
+		if(data=='1'){
+			$('#idResult').html('사용 가능한 ID 입니다');
+		} else {
+			$('#idResult').html('사용 불가능한 ID 입니다');
+		}
+
+	});
+});
+
+	
 $("#btn").click(function(){
 		let result = true;
 		let t;

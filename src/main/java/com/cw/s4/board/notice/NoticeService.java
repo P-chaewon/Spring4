@@ -1,6 +1,7 @@
 package com.cw.s4.board.notice;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.cw.s4.board.BoardDTO;
 import com.cw.s4.board.BoardFilesDTO;
 import com.cw.s4.board.BoardService;
+import com.cw.s4.board.CommentsDTO;
 import com.cw.s4.util.FileManager;
 import com.cw.s4.util.Pager;
 
@@ -92,6 +94,27 @@ public class NoticeService implements BoardService {
 	
 	public List<BoardFilesDTO> getFiles(BoardDTO boardDTO) throws Exception {
 		return noticeDAO.getFiles(boardDTO);
+	}
+	
+	public int setComment (CommentsDTO commentsDTO) throws Exception {
+		return noticeDAO.setComment(commentsDTO);
+	}
+	
+	public List<CommentsDTO> getCommentList(CommentsDTO commentsDTO, Pager pager) throws Exception {
+		pager.setPerPage(5L);
+		Long totalCount = noticeDAO.getCommentCount(commentsDTO);
+		pager.makeNum(totalCount);
+		pager.makeRow();
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("comments", commentsDTO);
+		map.put("pager", pager);
+
+				
+		return noticeDAO.getCommentList(map);
+	}
+	
+	public int setCommentDelete(CommentsDTO commentsDTO) throws Exception {
+		return noticeDAO.setCommentDelete(commentsDTO);
 	}
 
 }

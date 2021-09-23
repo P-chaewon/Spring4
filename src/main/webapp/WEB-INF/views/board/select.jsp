@@ -7,10 +7,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../temp/boot_head.jsp"></c:import>
+<style type="text/css">
+	.more {
+		cursor: pointer;
+	}
+</style>
 </head>
 <body>
 <c:import url="../temp/boot_nav.jsp"></c:import>
-	<div class="container-fluid">
+	<div class="container-fluid col-md-8">
 		<h3>NUM : ${dto.num}</h3>
 		<h3>Title : ${dto.title}</h3>
 		
@@ -26,6 +31,30 @@
 				<a href="./down?fileName=${files.fileName}">${files.oriName }</a>
 			</div>		
 		</c:forEach>
+		<hr>
+		<div id="commentList" data-board-num="${dto.num}">
+		
+		</div>
+		<c:if test="${not empty member}">
+			<div>
+				<div class="mb-3">
+			    	<label for="writer" class="form-label">Writer</label>
+			    	<input type="text" class="form-control" name="writer" id="writer" value="${member.id }" placeholder="Enter Writer" readonly="readonly">
+			  	</div>
+			  
+				<div class="mb-3">
+					<label for="contents" class="form-label">Contents</label>
+	  				<textarea class="form-control" cols=""  name="contents" id="contents" rows="2"></textarea>
+			  	</div>
+			 	<!-- button 추가 -->
+			    <button type="button" class="btn btn-primary" id="comment">WRITE</button>
+			
+			</div>
+		</c:if>
+		
+
+		
+		<hr>
 	</div>
 	
 	
@@ -39,6 +68,69 @@
 			
 		</c:if>
 	</div>	
+<script type="text/javascript">
+	getCommentList(1);
+	
+	//del click event
+	$("#commentList").on("click", ".del", function () {
+		let commentNum=$(this).attr("data-comment-del");
+		console.log(commentNum);
+		//url ./commentDel
+		$.ajax({
+			type : "GET",
+			url : "./commentDel",
+			data : {commentNum:commentNum},
+			success : function (result) {
+				result = result.trim();
+				$("#commentList").html(result);
+			},
+			error : function (xhr, status, error) {
+				console.log(error);
+			}
+		})
+		getCommentList(1);
+	})
 
+	$("#commentList").on("click", ".more", function () {
+		//data-comment-pn의 값을 출력
+		let pn=$(this).attr("data-comment-pn");
+		getCommentList(pn);
+	});
+	
+
+
+	
+	function getCommentList(pageNumber) {
+		let num=$("#commentList").attr("data-board-num");
+		$.ajax({
+			type : "GET",
+			url : "./getCommentList",
+			data : {
+				num:num, 
+				pn : pageNumber	
+			},
+			success : function (result) {
+				result = result.trim();
+				$("#commentList").html(result);
+			},
+			error : function (xhr, status, error) {
+				console.log(error);				
+			}
+		});
+	}
+	
+	$('#comment').click(function () {
+		//작성자, 내용을 콘솔에 출력
+		let writer = $('#writer').val();
+		let contents = $('#contents').val();
+		$.post('./comment', {num:'${dto.num}', writer:writer, contents:contents}, function (result) {
+			console.log(result.trim());
+			
+			$('#contents').val('');
+			getCommentList();
+		});
+	});
+	
+</script>
 </body>
 </html>

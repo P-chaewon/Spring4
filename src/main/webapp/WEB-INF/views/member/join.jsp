@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <c:import url="../temp/boot_head.jsp"></c:import>
 
-</style>
+
 </head>
 <body>
 <c:import url="../temp/boot_nav.jsp"></c:import>
@@ -19,7 +19,7 @@
 			    <label for="title" class="form-label">ID</label>
 			    <input type="text" class="form-control put" name="id" id="id" placeholder="Enter ID">
 			    <button type="button" id="idCheck" class="btn btn-primary">ID 중복확인</button>
-			    <div id=idResult"></div>
+			    <div id="idResult"></div>
 			  </div>
 			<div class="mb-3">
 			    <label for="title" class="form-label">Password</label>
@@ -55,7 +55,8 @@
 		</form>	
 
 	</div>
-<!-- 	<script type="text/javascript" src="../resources/js/join.js"></script>
-	<script type="text/javascript" src="../resources/js/file.js"></script> -->
+
+	<script type="text/javascript" src="../resources/js/join.js"></script>
+	<script type="text/javascript" src="../resources/js/file.js"></script>
 </body>
 </html>
