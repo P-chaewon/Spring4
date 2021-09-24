@@ -90,4 +90,8 @@
 	<delete id="setCommentDelete" parameterType="CommentsDTO">
 		DELETE COMMENTS WHERE COMMENTNUM=#{commentNum}
 	</delete>
+	
+	<update id="setCommentUpdate" parameterType="CommentsDTO">
+		UPDATE COMMENTS SET CONTENTS=#{contents} WHERE commentNum=#{commentNum}
+	</update>
   </mapper>

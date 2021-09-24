@@ -70,6 +70,58 @@
 	</div>	
 <script type="text/javascript">
 	getCommentList(1);
+	let content = '';
+	$("#commentList").on("click", ".update", function () {
+		console.log('update');
+		let num=$(this).attr("data-comment-update");
+		content = $("#content"+num).text().trim();
+		$("#content"+num).children().css('display', 'none');
+		let ta='<textarea class="form-control" cols=""  name="contents" id="con" rows="">'
+		ta = ta +content+'</textarea>'
+		ta = ta + '<button class="btn btn-primary up">update</button>'
+		ta = ta + '<button class="btn btn-danger cancel">cancel</button>'
+		$("#content"+num).append(ta);
+	});
+	
+	$("#commentList").on("click", ".cancel", function () {
+		console.log(content);
+		$(this).parent().children('div').css('display', 'block');
+		$(this).parent().children('textarea').remove();
+		$(this).parent().children('button').remove();
+	});
+	
+	$("#commentList").on("click", ".up", function () {
+		let contents = $(this).prev().val();
+		let commentNum = $(this).parent().prev().text().trim();
+		console.log(commentNum);
+		$.ajax({
+			type : "POST",
+			url : "./commentUpdate",
+			data : {
+				commentNum:commentNum,
+				contents : contents
+			},
+			success : function (result) {
+				result = result.trim();
+				if(result>0){
+					alert("update 성공");
+					getCommentList(1);
+/* 					selector.parent().children('div').text(contents);
+					selector.parent().children('div').css('display', 'block');
+					selector.parent().children('textarea').remove();
+					selector.parent().children('button').remove(); */
+				} else{
+					alert("update 실패");
+				}
+				
+			},
+			error : function (xhr, status, error) {
+				alert("update 실패");
+			}
+		});
+	});
+
+	
 	
 	//del click event
 	$("#commentList").on("click", ".del", function () {
@@ -77,19 +129,27 @@
 		console.log(commentNum);
 		//url ./commentDel
 		$.ajax({
-			type : "GET",
+			type : "POST",
 			url : "./commentDel",
-			data : {commentNum:commentNum},
+			data : {
+				commentNum:commentNum
+			},
 			success : function (result) {
 				result = result.trim();
-				$("#commentList").html(result);
+				if(result>0){
+					alert("삭제 성공");
+					getCommentList(1);	
+				} else{
+					alert("삭제 실패");
+				}
+				
 			},
 			error : function (xhr, status, error) {
-				console.log(error);
+				alert("삭제 실패");
 			}
-		})
-		getCommentList(1);
-	})
+		});
+		
+	});
 
 	$("#commentList").on("click", ".more", function () {
 		//data-comment-pn의 값을 출력

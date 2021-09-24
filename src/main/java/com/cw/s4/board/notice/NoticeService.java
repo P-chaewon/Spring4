@@ -116,5 +116,9 @@ public class NoticeService implements BoardService {
 	public int setCommentDelete(CommentsDTO commentsDTO) throws Exception {
 		return noticeDAO.setCommentDelete(commentsDTO);
 	}
+	
+	public int setCommentUpdate(CommentsDTO commentsDTO) throws Exception {
+		return noticeDAO.setCommentUpdate(commentsDTO);
+	}
 
 }
