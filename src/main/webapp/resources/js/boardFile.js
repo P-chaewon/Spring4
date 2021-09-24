@@ -7,17 +7,25 @@
  file = file + '<button class="btn btn-outline-secondary del" type="button">X</button>';
  file = file + '</div>';
  
-let maxAppend=1;
+let count=1;
 //let index=0;
+function setCount (c) {
+	count = c;
+}
+
+function updateCount(){
+	count--;
+}
+
 $("#fileAdd").click(function(){
 /*	index++;
   let file = '<div class="input-group mb-3" id="del'+index+'">';
  file = file + '<input type="file" class="form-control">';
  file = file + '<button data-btn-id="'+index+'" class="btn btn-outline-secondary del" type="button">X</button>';
  file = file + '</div>';*/
-	if(maxAppend<=5){
+	if(count<=5){
 		$("#fileAddResult").append(file);
-		maxAppend++;
+		count++;
 	} else {
 		alert('최대 5개 가능');
 	}

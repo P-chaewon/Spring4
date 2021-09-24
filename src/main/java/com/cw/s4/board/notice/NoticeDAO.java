@@ -95,5 +95,8 @@ public class NoticeDAO implements BoardDAO {
 		return sqlSession.update(NAMESPACE+"setCommentUpdate", commentsDTO);
 	}
 	
+	public int setFileDelete(BoardFilesDTO boardFilesDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"setFileDelete", boardFilesDTO);
+	}
 }
 
