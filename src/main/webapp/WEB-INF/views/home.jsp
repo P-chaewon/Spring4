@@ -24,13 +24,41 @@
 	
 	<h1 id="ar"></h1>
 	<button id="btn">CLICK</button>
+	<div>
+		<table id="r" class="table table-hover">
+			<tr>
+				<td>ID</td>
+				<td>TITLE</td>
+				<td>USERID</td>
+			</tr>
+		</table>
+	</div>
 	<script type="text/javascript">
 		$("#btn").click(function() {
-			$.get("./ajax/t1?num=1", function (result) {
-				console.log(result.trim());
-				$("#ar").html(result.trim());
+			$.ajax({
+				type : "GET",
+				url : "http://jsonplaceholder.typicode.com/posts",
+				success : function (result) {
+					alert(result);
+					console.log(result);
+					console.log(result[0]);
+					console.log(result[0].title);
+
+					for(v1 of result) {
+						let v = "<tr>";
+						v = v + "<td>" + v1.id + "</td>";
+						v = v + "<td>" + v1.title + "</td>";
+						v = v + "<td>" + v1.userId + "</td>";
+						v = v + "</tr>";
+						
+						$("#r").append(v);
+					}
+					
+				}
+					
 			});
 		});
+		
 		
 	</script>
 </body>
