@@ -87,9 +87,23 @@ public class NoticeService implements BoardService {
 	}
 
 	@Override
-	public int setUpdate(BoardDTO boardDTO) throws Exception {
+	public int setUpdate(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		String realPath = servletContext.getRealPath("resources/upload/notice/");
+		int result = noticeDAO.setUpdate(boardDTO);
+		File file = new File(realPath);
+		
+		for(MultipartFile multipartFile : files) {
+			String fileName = fileManager.fileSave(multipartFile, file);
+			BoardFilesDTO boardFilesDTO = new BoardFilesDTO();
+			boardFilesDTO.setFileName(fileName);
+			boardFilesDTO.setOriName(multipartFile.getOriginalFilename());
+			boardFilesDTO.setNum(boardDTO.getNum());
+			
+			result = noticeDAO.setFile(boardFilesDTO);
+			
+		}
+		return result;
 	}
 	
 	public List<BoardFilesDTO> getFiles(BoardDTO boardDTO) throws Exception {

@@ -98,4 +98,8 @@
 	<delete id="setFileDelete" parameterType="BoardFilesDTO">
 		DELETE NOTICEFILES WHERE FILENUM=#{fileNum}
 	</delete>
+	
+	<update id="setUpdate" parameterType="BoardDTO">
+		UPDATE NOTICE SET TITLE=#{title}, CONTENTS=#{contents} WHERE NUM=#{num}
+	</update>
   </mapper>

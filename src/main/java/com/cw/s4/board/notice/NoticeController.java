@@ -157,5 +157,17 @@ public class NoticeController {
 		mv.addObject("result", result);
 		return mv;
 	}
+	
+	public ModelAndView setUpdate(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
+		//1. originalfileName
+		for(MultipartFile file : files) {
+			System.out.println(file.getOriginalFilename());
+		}
+		
+		ModelAndView mv = new ModelAndView();
+		int result = noticeService.setUpdate(boardDTO, files);
+		mv.setViewName("redirect:./list");
+		return mv;
+	}
 
 }
