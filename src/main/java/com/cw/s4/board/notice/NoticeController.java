@@ -158,6 +158,7 @@ public class NoticeController {
 		return mv;
 	}
 	
+	@PostMapping("update")
 	public ModelAndView setUpdate(BoardDTO boardDTO, MultipartFile [] files) throws Exception {
 		//1. originalfileName
 		for(MultipartFile file : files) {
